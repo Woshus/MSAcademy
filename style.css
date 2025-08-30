@@ -1,0 +1,35 @@
+@font-face {
+    font-family: PS2P;
+    src: url(fonts/PressStart2P.ttf);
+}
+
+@font-face {
+    font-family: Aldrich;
+    src: url(fonts/Aldrich.ttf);
+}
+
+
+body {
+    background-color: #C0C0C0;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+    font-family: PS2P, sans-serif;
+    font-weight: bold;
+    color: #000080;
+}
+
+p {
+    font-family: Aldrich, sans-serif;
+    font-size: 1.5em;
+    color: #000000;
+}
+#web_title{
+    font-size:xxx-large;
+    text-align:center;
+}
