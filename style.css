@@ -29,7 +29,86 @@ p {
     font-size: 1.5em;
     color: #000000;
 }
-#web_title{
-    font-size:xxx-large;
-    text-align:center;
+
+a {
+    font-family: Aldrich, sans-serif;
+}
+.game-link{
+    margin-left: 10px;
+    font-size:2em;
+}
+
+nav {
+    font-size: 2em;
+}
+
+li{
+    font-family: Aldrich, sans-serif;
+    color: #000000;
+}
+
+img {
+    max-width: 100%;
+    height: auto;
+    display: block;
+}
+
+
+#web-title {
+    font-size: 3em;
+    text-align: center;
+
+}
+
+.board-info-box {
+    display: flex;
+    align-items: flex-end;
+    gap: 15px;
+}
+
+.board-info-box img {
+    max-width: 400px;
+    
+}
+
+/* One Image Steps */
+.one-img-step-box {
+    display: flex;
+    align-items: flex-start;
+}
+
+.one-img-step-box img {
+    max-width: 400px;
+    
+}
+.one-img-step-box p {
+    display:block;
+    width: 50vw;
+    max-width:400px;
+    margin-left: 10px; 
+}
+
+/* Two Images Steps */
+.two-img-step-box {
+    display: flex;
+    align-items: flex-start;
+}
+/* .two-img-step-box img {
+    width: 50vw;
+    max-width:400px;`
+    height:auto; */
+
+.two-img-step-box img {
+    max-width:400px;
+}
+
+.links {
+    display: flex;
+    flex-direction: column;
+}
+
+hr {
+    border:none;
+    height: 2px;
+    background-color: black;
 }
