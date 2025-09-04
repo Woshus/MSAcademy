@@ -60,15 +60,39 @@
             <li> About
                 <ul>
                     <li> More Fancy </li>
-                </ul>   
+                </ul>
             </li>
 
         </ul>
 
+
+
+
+        <h1> Testing DB (Supabase) </h1>
+
+        <!-- SEARCH BAR -->
+        <input type="text" id="search-bar" placeholder="Type game title...">
+        <button id="game-search-button">Search</button>
+        <!-- DISPLAY RESULTS HERE, JS AUTO GENERATES THE HTML TO GO IN DIV-->
+        <div id="search-results"></div>
+
+
+
+
+        <!-- <form id="msgForm">
+            <input id="msgInput" placeholder="Write a message..." required />
+            <button type="submit">Post</button>
+        </form>
+
+        <ul id="messages"></ul>
+         -->
+
     </main>
 
-
-    <script src="script.js"></script>
+    <!-- <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script> -->
+    <script type="module" src="database.js"></script>
+    <script type="module" src="game_search.js"></script>
+    <!-- <script src="script.js"></script> -->
 
 </body>
 
