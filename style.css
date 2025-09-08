@@ -33,16 +33,16 @@ p {
 a {
     font-family: Aldrich, sans-serif;
 }
-.game-link{
-    margin-left: 10px;
-    font-size:2em;
+
+span {
+     font-family: Aldrich, sans-serif;
 }
 
 nav {
     font-size: 2em;
 }
 
-li{
+li {
     font-family: Aldrich, sans-serif;
     color: #000000;
 }
@@ -53,13 +53,33 @@ img {
     display: block;
 }
 
+hr {
+    border: none;
+    height: 2px;
+    background-color: black;
+}
+
+/* Standard Flex Box */ 
+.column_div {
+    display: flex;
+    gap: 24px;
+    flex-direction: column;
+}
+
+.row_div {
+    display: flex;
+    gap: 24px;
+    flex-direction: row;
+}
+
+/* Big Web title */ 
 
 #web-title {
     font-size: 3em;
     text-align: center;
-
 }
 
+/* Board Info */
 .board-info-box {
     display: flex;
     align-items: flex-end;
@@ -68,7 +88,7 @@ img {
 
 .board-info-box img {
     max-width: 400px;
-    
+
 }
 
 /* One Image Steps */
@@ -79,13 +99,14 @@ img {
 
 .one-img-step-box img {
     max-width: 400px;
-    
+
 }
+
 .one-img-step-box p {
-    display:block;
+    display: block;
     width: 50vw;
-    max-width:400px;
-    margin-left: 10px; 
+    max-width: 400px;
+    margin-left: 10px;
 }
 
 /* Two Images Steps */
@@ -93,22 +114,85 @@ img {
     display: flex;
     align-items: flex-start;
 }
-/* .two-img-step-box img {
-    width: 50vw;
-    max-width:400px;`
-    height:auto; */
 
 .two-img-step-box img {
-    max-width:400px;
+    max-width: 400px;
 }
+
+/* LINKS */ 
 
 .links {
     display: flex;
     flex-direction: column;
 }
 
-hr {
-    border:none;
-    height: 2px;
-    background-color: black;
+.title_link {
+    font-size: 26px;
+    font-weight: bold;
+    color: #1a0dab;
+    text-decoration: none;
+    margin-bottom: 8px;
 }
+
+.title_link:hover{
+    text-decoration: underline;
+}
+
+.game-link {
+    margin-left: 10px;
+    font-size: 2em;
+}
+
+/* Search Results */
+#search-results {
+    margin-top: 20px;
+}
+
+/* Individual Results */
+
+.result-card {
+    display: flex;
+    gap: 16px;
+    border-radius: 8px;
+    padding: 16px 0px 16px 16px;
+    background-color: #ffffff;
+    transition: transform 0.2s;
+
+    width: 90%;
+    max-width: 800px;
+}
+
+.result-card:hover {
+    transform: translateY(-5px);
+}
+
+/* Thumbnail */ 
+
+.result-thumbnail {
+    flex: 0 0 200px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-right: 10px;
+}
+
+/* Title + Other Content Div */
+
+.column1 {
+    flex: 2;
+}
+
+.column2 {
+    flex: 1;
+}
+
+.result-card span{
+    display: block;
+    margin-bottom: 4px;
+    font-size: 20px;
+    color: #4d5156;
+}
+
+
+
+
