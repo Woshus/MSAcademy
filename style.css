@@ -81,6 +81,7 @@ hr {
 
 /* Board Info */
 .board-info-box {
+    margin-top:15px;
     display: flex;
     align-items: flex-end;
     gap: 15px;

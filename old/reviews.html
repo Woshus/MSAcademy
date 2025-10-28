@@ -1,0 +1,177 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="style.css">
+    <link rel="icon" type="image/jpg" href="images/favicon.jpg">
+    <title>Reviews - MSAcademy</title>
+</head>
+
+<body>
+
+
+    <!-- HEADER -->
+    <header>
+        <h1 id="web-title"> Minesweeper Academy </h1>
+        <nav>
+            <a href="index.html">Home</a>
+            <a href="tools.html">Tools</a>
+            <a href="reviews.html">Game Reviews</a>
+            <a href="guides.html">Guides</a>
+            <a href="about.html">About</a>
+            <a href="todo.html">TODOs</a>
+        </nav>
+    </header>
+
+    <!-- MAIN CONTENT-->
+    <main>
+
+        <!-- Some Search Bar To Filter Game Reviews in the Future, With Database/whatever JS I need idk-->
+
+        <section id="game-search">
+            <h2> Game Reviews </h2>
+            <form action="/submit" method="post" id="filter-form">
+                <label for="start"> Start Date: </label>
+                <input type="date" id="start" name="start" required>
+
+                <label for="end"> End Date: </label>
+                <input type="date" id="end" name="end" required>
+
+                <label>
+                    Board Size:
+                    <select name="board-size">
+                        <option value="Beg"> Beginner </option>
+                        <option value="Int"> Intermediate </option>
+                        <option value="Exp"> Expert </option>
+                    </select>
+                </label>
+                <button type="submit" disabled> Search </button>
+            </form>
+        </section>
+
+
+
+        <!-- Dynamically Load In the Future? -->
+        <h1> Example Game Review Structure </h1>
+
+        <!-- Board -->
+
+        <hr>
+
+        <!-- JS - Board Info -->
+        <section>
+            <h2> Board: </h2>
+
+            <div class="board-info-box">
+                <img src="images/08_19_25_170/board.png">
+                <div class="links">
+                    <a class="game-link" href="https://minesweeper.online/game/4948348352">Original</a>
+                    <a class="game-link" href="https://minesweeper.online/game/4948543821">Optimized</a>
+                </div>
+            </div>
+
+            
+        </section>
+
+        <hr>
+
+        <section>
+            <h2> Step 1 - Corners </h2>
+            <div class="one-img-step-box">
+                <img src="images/08_19_25_170/corners.png">
+                <p>Clicked all 4 corners because I prefer to start games this way, even though some corners may be
+                    losses in efficiency. </p>
+            </div>
+
+        </section>
+
+        <hr>
+        <!-- JS - 1 Img Step -->
+        <section>
+            <h2> Step 2 </h2>
+
+            <div class="two-img-step-box">
+                <img src="images/08_19_25_170/step2_probs.png">
+                <img src="images/08_19_25_170/step2_paint.png">
+            </div>
+
+            <p> In this case, 4/6 of the cases do not lead to a loss in efficiency. Also, all of these options do
+                lead to openings/setup clicks/NF clicks. Correct me if I'm wrong here, but the NF-click 2 is
+                arguably the best option, as it has no chance
+                for efficiency loss (not sure on this one, but works for this board). Following this click in the
+                replay, a 2 is revealed, and then the opening is predicted by clicking next to the wall, as it has a
+                ~50% chance to be an opening. Then some NF clicks before the next step. Afterwards, another 2 setup
+                click/opening predictions are taken, among the orange cells shown above.
+            </p>
+        </section>
+
+        <hr>
+        <!-- JS - 2 Img Step -->
+        <section>
+            <h2> Step 3 </h2>
+             <div class="two-img-step-box">
+                <img src="images/08_19_25_170/step3_probs.png">
+                <img src="images/08_19_25_170/step3_paint.png">
+            </div>
+
+            <p>In this case, half of the orange clicks lead to an efficiency loss, namely leftmost op/setup click, the
+                1-2-1-op-pred, and the top right opening click, these will be discussed later.
+
+                The L-op-pred (I NEED BETTER NAMES) leads to no progress, so the next best move would be to take the 33%
+                guess, and pray for a good chord. Further, because the leftmost area is most likely an opening, the top
+                left
+                chord 33% is not a good choice. Between the bottom 2, the left one causes a 3bv square to be created in
+                the
+                potential opening space. And the one to the right causes the opening to still be there, but also hits
+                the
+                floating top left cell, reducing the amount of NF clicks on the board. Thus, take either of the bottom 2
+                (correct me if I'm wrong).
+
+                The replay takes the bottom right 33%, and chords around the flag, causing 2 more openings and giving
+                more
+                information about the board. The next chord, if accounting for floating mine density at this point
+                (~20%),
+                only has ~26% chance of being an inefficient chord. Then some NF clicks are taken before Step 4.
+            </p>
+        </section>
+
+        <hr>
+
+        <section>
+            <h2> Step 4 </h2>
+
+             <div class="two-img-step-box">
+                <img src="images/08_19_25_170/step4_probs.png">
+                <img src="images/08_19_25_170/step4_paint.png">
+            </div>
+            <p>
+                In this case, there are not many options. I would most likely die by chording the black cell, which
+                offers a good chord (at least equal), and has a high probability. The other option, loses a click and
+                also isn't very good for information.. The last option is the twin-chord at the bottom, which is what I
+                opted to do, before taking a follow up chord.
+            </p>
+        </section>
+
+
+        Board Information
+
+    </main>
+
+     <h1> Testing DB (Supabase) </h1>
+
+        <!-- SEARCH BAR -->
+        <input type="text" id="search-bar" placeholder="Type game title...">
+        <button id="game-search-button">Search</button>
+        <!-- DISPLAY RESULTS HERE, JS AUTO GENERATES THE HTML TO GO IN DIV-->
+        <div id="search-results"></div>
+        <div id="review-content"></div>
+
+    <script src="script.js"></script>
+    <script type="module" src="database.js"></script>
+    <script type="module" src="game_search.js"></script>
+
+</body>
+
+</html>

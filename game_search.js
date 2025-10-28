@@ -78,29 +78,85 @@ const handleSearch = async () => {
         card.querySelector('.title_link').addEventListener('click', (e) => {
             e.preventDefault();
             showReview(review);
+
+
         });
 
         resultsDiv.appendChild(card);
     });
 };
 
-function showReview(review) {
+function renderReviewBlocks(blocks, container) {
+    blocks.forEach((block, index) => {
+        const data = block.block_data;
+        container.appendChild(document.createElement("hr"))
+        switch (data.css_class) {
+
+            case "one-img-step-box":
+                const one_step_img_box = document.createElement('div');
+                one_step_img_box.classList.add("one-img-step-box");
+                one_step_img_box.innerHTML = `
+                <img src="${data.images}">
+                <p>"${data.text}</p>
+                `;
+                container.appendChild(one_step_img_box);
+
+            case "two-img-step-box":
+                const two_step_img_box = document.createElement('section');
+                two_step_img_box.innerHTML = `
+                    <h2> Step ${index} </h2>
+                    <div class="two-img-step-box">
+                        <img src="${data.images[1]}">
+                        <img src="${data.images[2]}">
+                    </div>
+
+                    <p>${data.text}</p>
+                    `
+                container.appendChild(two_step_img_box);
+            default:
+                break;
+        }
+        console.log(data.css_class);
+    });
+    return;
+}
+
+async function showReview(review) {
     resultsDiv.style.display = 'none';
     reviewDiv.style.display = 'block';
 
     reviewDiv.innerHTML = `
-        <h2>${review.title}</h2>
-        <p><strong>Player:</strong> ${review.player_name}</p>
-        <p><strong>Date:</strong> ${review.game_date}</p>
-        <p><strong>Board Size:</strong> ${boardSizes[review.size]}</p>
-        <p><strong>3BV:</strong> ${review.three_bv}</p>
-        <p><strong>Zini:</strong> ${review.zini}</p>
-        <p><strong>Max Eff:</strong> ${review.max_eff}%</p>
-        <p><strong>Comments:</strong> ${review.comment}</p>
-        <hr>
-        <div>${review.blog_html ?? "<em>No blog content yet.</em>"}</div>
+                    <div class="board-info-box">
+                <img src="images/08_19_25_170/board.png">
+                <div class="links">
+                    <a class="game-link" href="${review.game_link}">Original</a>
+                    <a class="game-link" href="${review.optimized_link}">Optimized</a>
+                </div>
+            </div>
         <button id="back-to-search">Back to Search</button>
-    `;
+                `;
+
+    const { data: blocks, error } = await supabase
+        .from('review_blocks')
+        .select('*')
+        .eq('review_id', review.review_id)
+        .order('block_order', { ascending: true });
+
+    if (error) {
+        reviewDiv.innerHTML = "<p>Error loading blog content.</p>";
+        console.error(error);
+
+    } else if (!blocks || blocks.length === 0) {
+        reviewDiv.innerHTML = "<p>No blog content yet.</p>";
+    } else {
+        renderReviewBlocks(blocks, reviewDiv);
+    }
+
+    const back_button = document.createElement("button");
+    back_button.id = "back-to-search";
+    back_button.textContent = "Back to Search";
+    reviewDiv.appendChild(back_button);
+
 
     reviewDiv.querySelector('#back-to-search').addEventListener('click', () => {
         reviewDiv.style.display = 'none';
