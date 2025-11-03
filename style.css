@@ -80,49 +80,53 @@ hr {
 }
 
 /* Board Info */
-.board-info-box {
+
+.image-with-links {
     margin-top:15px;
     display: flex;
     align-items: flex-end;
     gap: 15px;
 }
-
-.board-info-box img {
+.image-with-links img {
     max-width: 400px;
-
 }
 
-/* One Image Steps */
-.one-img-step-box {
+.one-image-text-box {
     display: flex;
     align-items: flex-start;
 }
 
-.one-img-step-box img {
+.one-image-text-box img {
     max-width: 400px;
 
 }
 
-.one-img-step-box p {
+.one-image-text-box p {
     display: block;
     width: 50vw;
     max-width: 400px;
     margin-left: 10px;
 }
 
+
 /* Two Images Steps */
-.two-img-step-box {
+.two-image-text-box {
     display: flex;
     align-items: flex-start;
 }
 
-.two-img-step-box img {
+.two-image-text-box img {
     max-width: 400px;
 }
 
+.text-box {
+    max-width: 800px;
+}
+
+
 /* LINKS */ 
 
-.links {
+.link-list {
     display: flex;
     flex-direction: column;
 }
@@ -139,7 +143,7 @@ hr {
     text-decoration: underline;
 }
 
-.game-link {
+.image-left-link {
     margin-left: 10px;
     font-size: 2em;
 }
