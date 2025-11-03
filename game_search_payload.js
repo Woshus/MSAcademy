@@ -65,23 +65,92 @@ function buildContent(blocks) {
     let element;
 
     switch (block.blockType) {
-      case "textBlock":
+      case "textBlock": {
         element = document.createElement("div");
         element.classList.add("text-block");
         element.innerHTML = block.body || "";
         break;
-      case "imageBlock":
+      }
+
+      case "imageBlock": {
         element = document.createElement("img");
         element.src = block.image.url;
         element.alt = block.image.alt || "";
         break;
-      case "linkBlock":
+      }
+
+      case "linkBlock": {
         if (!block.url) return;
-        element.document.createElement("a");
+        element = document.createElement("a");
         element.href = block.url;
         element.textContent = block.label || block.url;
         element.target = "_blank";
         break;
+      }
+
+      case "headerBlock": {
+        element = document.createElement(`${block.level}`);
+        element.innerHTML = block.heading;
+        break;
+      }
+
+      case "imageWithLinks": {
+        element = document.createElement("div");
+        element.classList.add("image-with-links");
+        const img = document.createElement("img");
+        img.src = block.image?.url || "/images/no_img_found.png";
+        img.alt = block.image?.alt || "";
+        element.appendChild(img);
+        if (Array.isArray(block.links) && block.links.length > 0) {
+          const linkList = document.createElement("div");
+          linkList.classList.add("link-list");
+          block.links.forEach((link, i) => {
+            const anchor = document.createElement("a");
+            anchor.classList.add("image-left-link");
+            anchor.href = link.url || "#";
+            anchor.textContent = link.label || `Link ${i + 1}`;
+            anchor.target = link.openInNewTab ? "_blank" : " _self";
+            linkList.appendChild(anchor);
+          });
+          element.appendChild(linkList);
+        }
+        break;
+      }
+    
+      case "oneImageTextBlock": {
+        element = document.createElement("div");
+        element.classList.add("one-image-text-box");
+        const img = document.createElement("img");
+        img.src = block.image?.url || "/images/no_img_found.png";
+        img.alt = block.image?.alt || "";
+        const text = document.createElement("p");
+        text.textContent = block.text || "";
+
+        element.appendChild(img);
+        element.appendChild(text);
+
+        break;
+      }
+      case "twoImageTextBlock": {
+        element = document.createElement("div");
+        const imagesDiv = document.createElement("div");
+        imagesDiv.classList.add("two-image-text-box");
+        const img1 = document.createElement("img");
+        img1.src = block.image1?.url || "/images/no_img_found.png";
+        img1.alt = block.image1?.alt || "";
+        const img2 = document.createElement("img");
+        img2.src = block.image2?.url || "/images/no_img_found.png";
+        img2.alt = block.image2?.alt || "";
+        imagesDiv.appendChild(img1)
+        imagesDiv.appendChild(img2)
+        const text = document.createElement("p");
+        text.classList.add("text-box");
+        text.textContent = block.text || "";
+        element.appendChild(imagesDiv);
+        element.appendChild(text);
+        break;
+      }
+        
       default:
         console.warn("Unknown block type:", block.blockType);
         return;
@@ -89,12 +158,12 @@ function buildContent(blocks) {
 
     container.appendChild(element);
   });
+
+  return container;
 }
 async function showPost(post) {
   resultsDiv.style.display = "none";
   postDiv.style.display = "block";
-
-  postContent = buildContent(post.content);
 
   postDiv.innerHTML = `
         <button id="back-to-search">Back to Search</button>
@@ -103,8 +172,11 @@ async function showPost(post) {
         <p><strong>Date:</strong> ${new Date(
           post.createdAt
         ).toLocaleDateString()}</p>
-        <div class="post-body">${post.body || "No content available."}</div>
+        <div class="post-body"></div>
     `;
+  const postBody = postDiv.querySelector(".post-body");
+  const postContent = buildContent(post.content);
+  postBody.appendChild(postContent);
 
   document.getElementById("back-to-search").addEventListener("click", () => {
     postDiv.style.display = "none";
