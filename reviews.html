@@ -30,7 +30,7 @@
 
         <!-- Some Search Bar To Filter Game Reviews in the Future, With Database/whatever JS I need idk-->
 
-        <section id="game-search">
+        <!-- <section id="game-search">
             <h2> Game Reviews </h2>
             <form action="/submit" method="post" id="filter-form">
                 <label for="start"> Start Date: </label>
@@ -49,23 +49,27 @@
                 </label>
                 <button type="submit" disabled> Search </button>
             </form>
-        </section>
+        </section> -->
 
 
 
         
 
-    </main>
         <!-- SEARCH BAR -->
         <input type="text" id="search-bar" placeholder="Type game title...">
-        <button id="game-search-button">Search</button>
+        <button id="post-search-button">Search</button>
         <!-- DISPLAY RESULTS HERE, JS AUTO GENERATES THE HTML TO GO IN DIV-->
         <div id="search-results"></div>
-        <div id="review-content"></div>
+        <div id="post-content"></div>
 
-    <script src="script.js"></script>
-    <script type="module" src="database.js"></script>
-    <script type="module" src="game_search.js"></script>
+    </main>
+
+
+    <!-- <script type="module" src="database.js"></script>
+    <script type="module" src="game_search.js"></script> -->
+
+    <script src="game_search_payload.js"></script>
+  
 
 </body>
 
