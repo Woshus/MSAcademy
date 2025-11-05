@@ -1,4 +1,4 @@
-const API_URL = "http://localhost:3000/api/posts";
+const API_URL = "https://ms-academy-payload.onrender.com/api/posts";
 
 const searchBar = document.getElementById("search-bar");
 const resultsDiv = document.getElementById("search-results");
