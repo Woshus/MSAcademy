@@ -29,7 +29,7 @@ const handleSearch = async () => {
       const date = post.createdAt
         ? new Date(post.createdAt).toLocaleDateString()
         : "N/A";
-      const thumbnail = post.thumbnail?.url || "/images/no_img_found.png";
+      const thumbnail = post.thumbnail?.cloudinary.secure_url || "/images/no_img_found.png";
 
       card.innerHTML = `
                 <div class="result-thumbnail">
@@ -74,7 +74,7 @@ function buildContent(blocks) {
 
       case "imageBlock": {
         element = document.createElement("img");
-        element.src = block.image.url;
+        element.src = block.image.cloudinary.secure_url;
         element.alt = block.image.alt || "";
         break;
       }
@@ -98,7 +98,7 @@ function buildContent(blocks) {
         element = document.createElement("div");
         element.classList.add("image-with-links");
         const img = document.createElement("img");
-        img.src = block.image?.url || "/images/no_img_found.png";
+        img.src = block.image?.cloudinary.secure_url || "/images/no_img_found.png";
         img.alt = block.image?.alt || "";
         element.appendChild(img);
         if (Array.isArray(block.links) && block.links.length > 0) {
@@ -121,7 +121,7 @@ function buildContent(blocks) {
         element = document.createElement("div");
         element.classList.add("one-image-text-box");
         const img = document.createElement("img");
-        img.src = block.image?.url || "/images/no_img_found.png";
+        img.src = block.image?.cloudinary.secure_url || "/images/no_img_found.png";
         img.alt = block.image?.alt || "";
         const text = document.createElement("p");
         text.textContent = block.text || "";
@@ -136,10 +136,10 @@ function buildContent(blocks) {
         const imagesDiv = document.createElement("div");
         imagesDiv.classList.add("two-image-text-box");
         const img1 = document.createElement("img");
-        img1.src = block.image1?.url || "/images/no_img_found.png";
+        img1.src = block.image1?.cloudinary.secure_url || "/images/no_img_found.png";
         img1.alt = block.image1?.alt || "";
         const img2 = document.createElement("img");
-        img2.src = block.image2?.url || "/images/no_img_found.png";
+        img2.src = block.image2?.cloudinary.secure_url || "/images/no_img_found.png";
         img2.alt = block.image2?.alt || "";
         imagesDiv.appendChild(img1)
         imagesDiv.appendChild(img2)
